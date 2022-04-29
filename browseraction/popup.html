@@ -1,0 +1,71 @@
+<script type="text/javascript" src="popup.js"></script>
+<style>
+    .rotate-center {
+	-webkit-animation: rotate-center 0.6s ease-in-out both;
+	        animation: rotate-center 0.6s ease-in-out both;
+    }
+    .scale-down-center {
+	-webkit-animation: scale-down-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) alternate-reverse both;
+	        animation: scale-down-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) alternate-reverse both;
+    }
+    @-webkit-keyframes rotate-center {
+      0% {
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+      }
+    }
+    @keyframes rotate-center {
+      0% {
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes scale-down-center {
+    0% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+    }
+    }
+    @keyframes scale-down-center {
+    0% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+    }
+    }
+
+</style>
+<div style="width:200px;">
+  <label for="username"><b>Username</b></label>
+  <input type="text" placeholder="Enter Username" name="username" id = 'username' required>
+    
+  <label for="password"><b>Password</b></label>
+  <input type="password" placeholder="Enter Password" name="password" id = 'password' required>
+    
+  <button type="submit" id = 'cred-refresh'>Save Credentials</button>
+  <p>
+  <input type="checkbox" id="autologin" name="autologin">
+  <label for="autologin">Autologin</label>
+  </p>
+</div>
+<p></p>
+<div style="width:200px; cursor: pointer;">
+    <img src="chrome-extension://innkkkinhenaliknfnjdmgaggcaogkao/icons/update.png" id="update" width="32" height = "32" title="Accept all changes into the database" class = "scale-down-center"></img>
+    <img src="chrome-extension://innkkkinhenaliknfnjdmgaggcaogkao/icons/check.png" id="check" width="32" height = "32" title="Check for new changes!" class = "rotate-center"></img>
+    <img src="chrome-extension://innkkkinhenaliknfnjdmgaggcaogkao/icons/clear.png" id="clear" width="32" height = "32" title="Clear database! This is irreversible!" class = "scale-down-center"></img>
+</div>

@@ -1,0 +1,37 @@
+{
+    "name": "Advanced Moodle",
+    "description": "Upgrade for the current FHWS Elearning. Added features: Mark new content, Autologin",
+    "version": "0.3",
+    "manifest_version": 2,
+    "permissions": [
+          "storage"
+      ],
+    "browser_action": {
+      "default_icon": { "19": "icons/19x19.png", "38": "icons/38x38.png" },
+      "default_title": "Advanced Moodle. Enhance your FHWS Elearning experience",
+      "default_popup": "browseraction/popup.html"
+    },
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://elearning.fhws.de/course/view.php?*"],
+          "js": ["myscript.js"]
+        },
+        {
+          "matches": ["https://fhws.zoom.us/rec/play/*"],
+          "js": ["zoom.js"]
+        },
+        {
+          "matches": ["https://elearning.fhws.de/login/*"],
+          "js": ["login.js"]
+        },
+        {
+          "matches": ["https://elearning.fhws.de/"],
+          "js": ["index.js"]
+        }
+        
+      ]
+  }
