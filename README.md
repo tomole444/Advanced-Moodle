@@ -22,7 +22,7 @@ Chrome/Edge extension
 
 ![Copy ID][logo3]
 
-5. Change the ID in `browseractions/popup.html`
+5. Change the ID in your local folder (the location where you saved the unzipped folder) `browseractions/popup.html`
 
 ![Change ID][logo4]
 
