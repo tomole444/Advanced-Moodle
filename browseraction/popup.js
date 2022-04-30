@@ -7,9 +7,12 @@ window.onload = function() {
         document.getElementById("update").offsetWidth;
         document.getElementById("update").classList.add("scale-down-center");
 
-        //Eigentliche Funktion
-        chrome.extension.sendMessage({
-            type: "update"
+        //Eigentliche Funktion -> message an contentskript schicken
+        
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            if(tabs[0].url.includes("https://elearning.fhws.de/course/view.php?")){
+                chrome.tabs.sendMessage(tabs[0].id, {type: "update", color: "#F00"});
+            }
         });
     }
     //Datenbank wird geleert
@@ -20,8 +23,10 @@ window.onload = function() {
         document.getElementById("clear").classList.add("scale-down-center");
 
         //Eigentliche Funktion
-        chrome.extension.sendMessage({
-            type: "clear"
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            if(tabs[0].url.includes("https://elearning.fhws.de/course/view.php?")){
+                chrome.tabs.sendMessage(tabs[0].id, {type: "clear", color: "#F00"});
+            }
         });
     }
     //Manuell die Seite auf unstimmigkeiten in bezug auf die Datenbank prüfen
@@ -32,8 +37,10 @@ window.onload = function() {
         document.getElementById("check").classList.add("rotate-center");
         
         //Checkroutine initieren
-        chrome.extension.sendMessage({
-            type: "check"
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            if(tabs[0].url.includes("https://elearning.fhws.de/course/view.php?")){
+                chrome.tabs.sendMessage(tabs[0].id, {type: "check", color: "#F00"});
+            } 
         });
     }
     //Prüfen, ob ZUgangsdaten in der Datenbank liegen

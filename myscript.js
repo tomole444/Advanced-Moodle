@@ -1,20 +1,7 @@
-chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
-    switch(message.type) {
+chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
+    switch(request.type) {
         case "clear":
-            var id_list = [];
-            var id_empty = {
-                course_id: "dummy",
-                li_id: "dummy"
-            };
-            id_list.push(id_empty);
-            chrome.storage.local.set({Database: id_list}, function() {
-                console.log('Database empty');
-            });
-            chrome.extension.sendMessage({
-                type: "badge",
-                badge: "0"
-            });
-            location.reload();
+            clear_database();
         break;
         default:
             //Alle "li" Elemente auf der Site erfassen
@@ -30,9 +17,7 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
                 try{
                     Database_retr.length;
                 }catch(e){
-                    chrome.extension.sendMessage({
-                        type: "clear"
-                    });
+                    clear_database();
                     return null;
                 }
                 console.log("Li-Items in database: " + Database_retr.length);
@@ -57,33 +42,46 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
                             }
                         }
                         // Entweder der Liste, und später der Datenbank, anfügen oder betroffenes objekt einfärben
-                        if (found == false && message.type == "update"){
+                        if (found == false && request.type == "update"){
                             Database_retr.push(id_dict);
-                        }else if(found == false && message.type == "check"){
-                            li_items[i].style.backgroundColor = message.color;
+                        }else if(found == false && request.type == "check"){
+                            li_items[i].style.backgroundColor = request.color;
                             badge_counter = badge_counter + 1;
                         }
                     }
                 }
                 //Erfasste und alte "li" Items speichern oder badge nummer aktualisieren
-                if(message.type == "update"){
+                if(request.type == "update"){
                     chrome.storage.local.set({Database: Database_retr}, function() {
                         console.log('Values uploaded');
                     });
                     //Die Badge auf 0 setzen
-                    chrome.extension.sendMessage({
-                        type: "badge",
-                        badge: "0"
-                    });
+                    set_badge("0");
                     location.reload();
-                }else if(message.type == "check"){
+                }else if(request.type == "check"){
                     //Badge auf Anzahl der Änderungen setzen
-                    chrome.extension.sendMessage({
-                        type: "badge",
-                        badge: badge_counter.toString(10)
-                    });
+                    set_badge(badge_counter.toString(10));
                 }
             });
         break;
     }
+    sendResponse({dummy: "Dummy response"});
 });
+
+function clear_database(){
+    var id_list = [];
+    var id_empty = {
+        course_id: "dummy",
+        li_id: "dummy"
+    };
+    id_list.push(id_empty);
+    chrome.storage.local.set({Database: id_list}, function() {
+        console.log('Database empty');
+    });
+    set_badge("0");
+    location.reload();
+}
+function set_badge(number_str){
+    chrome.runtime.sendMessage({type: "badge", number: number_str 
+    });
+}
