@@ -36,3 +36,22 @@ Chrome/Edge extension
 [logo4]: https://raw.githubusercontent.com/tomole444/Advanced-Moodle/main/screenshots/installation/Alter%20ID.png "Alter ID"
 # Usage
 ## Save Autologin credential
+To save your credentials for autologin just insert your credentials and hit "Save Credentials"
+## Handle new items in a course
+New items in a course are displayed red:
+
+![Red][usage1]
+
+In addition to this, the number of new item will be displayed in the badgecount of the extension.
+
+![Badgecount][usage2]
+
+Once you clicked the green checkmark in the extensions menu all items the extension will interpret all new items on this site as checked. They will be display without a red backgground.
+Sometimes the extension will not mark any new items on the site. To manually check for new item just hit the refreshing icon.
+You can also clear the database so all items across all courses will be displayed as new. (This step irreversible so be careful)
+
+![Menu][usage3]
+
+[usage1]: https://raw.githubusercontent.com/tomole444/Advanced-Moodle/main/screenshots/usage/new%20items.png "Red items"
+[usage2]: https://raw.githubusercontent.com/tomole444/Advanced-Moodle/main/screenshots/usage/badge%20count.png "Badge Count"
+[usage3]: https://raw.githubusercontent.com/tomole444/Advanced-Moodle/main/screenshots/usage/menuitems.png "Menu"
