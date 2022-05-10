@@ -1,7 +1,7 @@
 {
     "name": "Advanced Moodle",
     "description": "Upgrade for the current FHWS Elearning. Added features: Mark new content, Autologin",
-    "version": "1.0",
+    "version": "1.1",
     "manifest_version": 3,
     "permissions": [
           "storage",
@@ -31,6 +31,10 @@
         {
           "matches": ["https://elearning.fhws.de/"],
           "js": ["index.js"]
+        },
+        {
+          "matches": ["https://campusportal.fhws.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces"],
+          "js":["campus_portal_login.js"]
         }
         
       ]
